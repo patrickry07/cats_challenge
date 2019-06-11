@@ -63,10 +63,8 @@ class Home extends React.Component {
     axios.delete(`/delete/${selectedCat.id}`)
   }
 
-  editCat(){
-    this.setState({
-      modalOpen: true
-    })
+  editCat(newCat){
+    console.log(newCat)
   }
 
 
@@ -74,10 +72,16 @@ class Home extends React.Component {
     let {cats, cat, selected, modalOpen} = this.state;
     return (
       <div>
-        
-        <Search/>
-        <CatList cats={cats} selectCat={this.selectCat}/>
-        <CatSelect cat={cat} deleteCat={this.deleteCat} selected={selected} editCat={this.editCat} modalOpen={modalOpen}/>
+        <Container>
+          <Row>
+            <Col sm={3}>
+              <Search/>
+              <CatList cats={cats} selectCat={this.selectCat} />
+            </Col>
+              <Col sm={9}><CatSelect cat={cat} deleteCat={this.deleteCat} selected={selected} editCat={this.editCat}/>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
