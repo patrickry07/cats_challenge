@@ -1,22 +1,44 @@
 import React from 'react';
-import { InputGroup, FormControl, Button } from 'react-bootstrap'
+import { InputGroup, FormControl, Button, handleSearch, Form } from 'react-bootstrap'
 
-const Search = () => {
-  
+class Search extends React.Component {
+
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      query: '',
+
+    }
+
+  }
+
+  handleChange (query) {
+    this.setState({
+      query: query
+    })
+    this.props.handleSearch(query)
+  }
+
+
+
+
+
+  render() {
     return (
       <div>
-        <InputGroup className="mb-3">
-          <FormControl
-            placeholder="Search"
-            aria-label="Recipient's username"
-            aria-describedby="basic-addon2"
-          />
-          <InputGroup.Append>
-            <Button variant="outline-secondary" >Search</Button>
-          </InputGroup.Append>
-        </InputGroup>
+
+            <Form>
+              <Form.Group >
+                {/* <Form.Label>Thumbnail Url</Form.Label> */}
+                <Form.Control type="text" placeholder="Search" value={this.state.query} onChange={(event) => { this.handleChange(event.target.value) }} />
+              </Form.Group>
+            </Form>
       </div>
-    )
+    );
+  }
 }
+
 
 export default Search;

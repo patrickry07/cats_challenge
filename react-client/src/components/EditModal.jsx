@@ -22,7 +22,7 @@ class Home extends React.Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-
+// create function to close the modal, as well as reset the inputs if they were changed and not saved
   handleClose() {
     this.setState({
       show: false,
@@ -32,10 +32,8 @@ class Home extends React.Component {
       owner: this.props.cat.owner_name,
     })
   }
-
+// create function to open the modal, as well as set the initial input fields equal to the current cats attributes
   handleShow() {
-    // this.setState({ show: true });
-    console.log('should be showing')
     this.setState({
       show: true,
       thumbnail: this.props.cat.thumbnail,
@@ -45,24 +43,14 @@ class Home extends React.Component {
 
     })
   }
-
-
-  // componentDidMount() {
-  //   console.log(this.props.cat)
-  //   this.setState({
-  //     thumbnail: this.props.cat.thumbnail,
-  //     birthdate: this.props.cat.birthdate,
-  //     name: this.props.cat.name,
-  //     owner: this.props.cat.owner_name,
-  //   })
-  // }
-
+  //create function to update the view, so that the input stays updated while user types
   thumbnailChange (thumbnail) {
     this.setState({
       thumbnail: thumbnail
     })
   }
 
+  //create function to update the view, so that the input stays updated while user types
   birthChange(birthdate) {
     this.setState({
       birthdate: birthdate
@@ -70,18 +58,21 @@ class Home extends React.Component {
     console.log(this.state.birthdate)
   }
 
+  //create function to update the view, so that the input stays updated while user types
   nameChange(name) {
     this.setState({
       name: name
     })
   }
 
+  //create function to update the view, so that the input stays updated while user types
   ownerChange(owner) {
     this.setState({
       owner: owner
     })
   }
 
+  // create function to handlesubmit of edited information in order to update the front end view as well as the backend database
   handleSubmit () {
     let {thumbnail, name, birthdate, owner} = this.state
     event.preventDefault();
