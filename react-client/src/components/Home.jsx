@@ -15,7 +15,12 @@ class Home extends React.Component {
 
     this.state = {
       cats: [],
+      cat: {},
+      selected: false
     }
+    this.selectCat = this.selectCat.bind(this);
+    this.deleteCat = this.deleteCat.bind(this);
+    this.editCat = this.editCat.bind(this);
   }
 
   componentDidMount() {
@@ -23,18 +28,56 @@ class Home extends React.Component {
     .then((cats)=>{
       this.setState({cats: cats.data})
     })
+    .catch((err)=>{
+      console.log(err)
+    })
   }
 
 
+  selectCat (selectedCat) {
+    selectedCat.views++;
+    this.setState({
+      cat: selectedCat, 
+      selected: true,
+      modalOpen: false
+    })
+    axios.put(`/view/${selectedCat.id}/${selectedCat.views}`)
+      .then((result)=>{
+        console.log(result)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    console.log(this.state.cat)
+  }
+
+  deleteCat (selectedCat,) {
+    let newCatArr = this.state.cats.filter((cat)=>{
+      return cat.id !== selectedCat.id
+    })
+    this.setState({
+      cat: {},
+      cats: newCatArr,
+      selected: false
+    })
+    axios.delete(`/delete/${selectedCat.id}`)
+  }
+
+  editCat(){
+    this.setState({
+      modalOpen: true
+    })
+  }
+
 
   render() {
-    console.log(this.state.cats);
+    let {cats, cat, selected, modalOpen} = this.state;
     return (
       <div>
         
         <Search/>
-        <CatList/>
-        <CatSelect/>
+        <CatList cats={cats} selectCat={this.selectCat}/>
+        <CatSelect cat={cat} deleteCat={this.deleteCat} selected={selected} editCat={this.editCat} modalOpen={modalOpen}/>
       </div>
     );
   }

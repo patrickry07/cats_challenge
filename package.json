@@ -1,5 +1,4 @@
 {
-  "name": "mvp-stater-kit",
   "scripts": {
     "react-dev": "webpack --config webpack.config.js --mode development --watch",
     "server-dev": "nodemon server/index.js",

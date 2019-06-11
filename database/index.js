@@ -60,4 +60,5 @@ function getCats () {
 
 
 module.exports.sequelize = sequelize;
+module.exports.Cats = Cats;
 
