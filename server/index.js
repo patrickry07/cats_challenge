@@ -7,9 +7,9 @@ const db = require('../database/index');
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, '../react-client/dist')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../react-client/dist')));
 
 app.get('/cats', (req, res)=>{
   db.Cats.findAll({})
@@ -42,6 +42,26 @@ app.delete('/delete/:id', (req, res)=>{
       id: id
     }
   })
+})
+
+app.post('/edit', (req, res)=>{
+  let cat = req.body
+  db.Cats.update({
+    name: cat.name,
+    owner_name: cat.owner_name,
+    birthdate: cat.birthdate,
+    thumnail: cat.thumbnail
+  }, {
+      where: {
+        id: cat.id
+      }
+    })
+    .then((result)=>{
+      console.log(result)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
 })
 
 

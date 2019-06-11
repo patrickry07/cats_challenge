@@ -54,7 +54,6 @@ class Home extends React.Component {
   //     birthdate: this.props.cat.birthdate,
   //     name: this.props.cat.name,
   //     owner: this.props.cat.owner_name,
-
   //   })
   // }
 

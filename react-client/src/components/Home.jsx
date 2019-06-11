@@ -77,7 +77,7 @@ class Home extends React.Component {
       cat: newCat,
       cats: newCats
     })
-    console.log(newCat)
+    axios.post('/edit', newCat)
   }
 
 
