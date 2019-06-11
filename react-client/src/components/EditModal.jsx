@@ -30,19 +30,14 @@ class Home extends React.Component {
       birthdate: this.props.cat.birthdate,
       name: this.props.cat.name,
       owner: this.props.cat.owner_name,
-
     })
   }
 
   handleShow() {
-    this.setState({ show: true });
+    // this.setState({ show: true });
     console.log('should be showing')
-  }
-
-
-  componentDidMount() {
-    console.log(this.props.cat)
     this.setState({
+      show: true,
       thumbnail: this.props.cat.thumbnail,
       birthdate: this.props.cat.birthdate,
       name: this.props.cat.name,
@@ -50,6 +45,18 @@ class Home extends React.Component {
 
     })
   }
+
+
+  // componentDidMount() {
+  //   console.log(this.props.cat)
+  //   this.setState({
+  //     thumbnail: this.props.cat.thumbnail,
+  //     birthdate: this.props.cat.birthdate,
+  //     name: this.props.cat.name,
+  //     owner: this.props.cat.owner_name,
+
+  //   })
+  // }
 
   thumbnailChange (thumbnail) {
     this.setState({
@@ -80,6 +87,7 @@ class Home extends React.Component {
     let {thumbnail, name, birthdate, owner} = this.state
     event.preventDefault();
     let newCat = {
+      id: this.props.cat.id,
       thumbnail: thumbnail,
       name: name,
       birthdate: birthdate,
@@ -87,7 +95,7 @@ class Home extends React.Component {
       views: this.props.cat.views
     };
     this.setState({
-      show: false
+      show: false,
     })
     this.props.editCat(newCat)
   }

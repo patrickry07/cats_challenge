@@ -4,6 +4,7 @@ import EditModal from './EditModal.jsx';
 
 
 const CatSelect = ({cat, deleteCat, selected, editCat}) => {
+  console.log('cat', cat);
   if (selected){
     return (
       <div>

@@ -64,6 +64,19 @@ class Home extends React.Component {
   }
 
   editCat(newCat){
+    let newCats = [];
+    this.state.cats.forEach((cat)=>{
+      if (cat.id === newCat.id){
+        newCats.push(newCat);
+      }
+      else{
+        newCats.push(cat);
+      }
+    })
+    this.setState({
+      cat: newCat,
+      cats: newCats
+    })
     console.log(newCat)
   }
 
