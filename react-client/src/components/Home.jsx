@@ -43,7 +43,11 @@ class Home extends React.Component {
   selectCat (selectedCat) {
     //selects cat from list and then sets this.state.cat equal to its value, also updates the views by 1 each time this is done
     // updates the front end views view first, then sends the put request to server to update as well.
-    selectedCat.views++;
+
+    // this conditional is to keep the view from updated if the cat selected is already the cat being viewed
+    if (selectedCat.id !== this.state.cat.id){
+      selectedCat.views++;
+    }
     this.setState({
       cat: selectedCat, 
       selected: true,
@@ -99,8 +103,12 @@ class Home extends React.Component {
       let searchedCats;
       // if there is a query present, show the cats whose name match
       if (query) {
-        // Case SENSITIVE, and use includes to implement a more lenient search
-        searchedCats = this.allCats.filter((cat)=> cat.name.includes(query))
+        // Case INSENSITIVE, and use of of String.prootype.includes meant to implement a more lenient search
+        searchedCats = this.allCats.filter((cat)=> {
+          let catLower = cat.name.toLowerCase();
+          let queryLower = query.toLowerCase();
+          return catLower.includes(queryLower)
+        })
       }
       else {
         //if the query is empty, just showing all the cats
@@ -110,7 +118,7 @@ class Home extends React.Component {
         cats: searchedCats
       })
     }
-    // debouncing the searching function so that it feels more natural. (from lodash library)
+    // debouncing the searching function so that it feels more natural, and doesnt immediately search upon imput (from lodash library)
     const debounceSearch = debounce(filter, 1000)
     debounceSearch(query)
 
@@ -125,11 +133,16 @@ class Home extends React.Component {
         <Container>
           <Row>
             <Col sm={3}>
-              <Search handleSearch={this.handleSearch}/>
+              <div>
+              <Search handleSearch={this.handleSearch} />
+            </div>
+              <div>
               <CatList cats={cats} selectCat={this.selectCat} />
+            </div>
             </Col>
-              <Col sm={9}><CatSelect cat={cat} deleteCat={this.deleteCat} selected={selected} editCat={this.editCat}/>
-            </Col>
+            <div>
+              <Col className="panel panel-default" sm={9}><CatSelect cat={cat} deleteCat={this.deleteCat} selected={selected} editCat={this.editCat}/></Col>
+            </div>
           </Row>
         </Container>
       </div>

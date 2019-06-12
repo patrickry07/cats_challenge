@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap'
+import { Button, Container, Row } from 'react-bootstrap'
 import EditModal from './EditModal.jsx';
 import moment from 'moment';
 
@@ -9,13 +9,15 @@ const CatSelect = ({cat, deleteCat, selected, editCat}) => {
   if (selected){
     return (
       <div>
-        <img src={cat.thumbnail} height="300" width="300" className="text-center"/>
-        <div>
-        <div>{cat.name}</div>
-        {/* add moment to dates them prettier */}
-          <div>{moment(cat.birthdate).format('MMMM Do YYYY')}</div>
-        <div>{cat.owner_name}</div>
-        <div>{'Number of Views: ' + cat.views}</div>
+        <div className="text-center">
+          <img src={cat.thumbnail} height="300" width="400" className="text-center"/>
+          <div>
+            <h3>{cat.name}</h3>
+            {/* add moment to dates them prettier */}
+              <div>{moment(cat.birthdate).format('MMMM Do YYYY')}</div>
+            <div>{cat.owner_name}</div>
+            <div>{'Number of Views: ' + cat.views}</div>
+          </div>
         </div>
         <div className="text-right">
           <EditModal cat={cat} editCat={editCat}/>
