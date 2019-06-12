@@ -11,6 +11,7 @@ app.use(express.static(path.join(__dirname, '../react-client/dist')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// create get request to allow for initial sending of cats data to front-end
 app.get('/cats', (req, res)=>{
   db.Cats.findAll({})
     .then((cats) => {
@@ -18,6 +19,7 @@ app.get('/cats', (req, res)=>{
     })
 })
 
+// create endpoint for editing the viewcount for a cat
 app.put('/view/:id/:views', (req,res)=>{
   let {id, views} = req.params;
   db.Cats.update({
@@ -35,6 +37,7 @@ app.put('/view/:id/:views', (req,res)=>{
   })
 })
 
+//create endpoint to handle deleting cat row
 app.delete('/delete/:id', (req, res)=>{
   let { id } = req.params
   db.Cats.destroy({
@@ -44,6 +47,7 @@ app.delete('/delete/:id', (req, res)=>{
   })
 })
 
+// create endpoint to handle editing of cat details
 app.post('/edit', (req, res)=>{
   let cat = req.body
   db.Cats.update({

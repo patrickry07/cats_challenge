@@ -12,6 +12,7 @@ const CatSelect = ({cat, deleteCat, selected, editCat}) => {
         <img src={cat.thumbnail} height="300" width="300" className="text-center"/>
         <div>
         <div>{cat.name}</div>
+        {/* add moment to dates them prettier */}
           <div>{moment(cat.birthdate).format('MMMM Do YYYY')}</div>
         <div>{cat.owner_name}</div>
         <div>{'Number of Views: ' + cat.views}</div>

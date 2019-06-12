@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment';
+
 
 
 const CatList = ({cats, selectCat}) => {
@@ -10,7 +12,7 @@ const CatList = ({cats, selectCat}) => {
         return <div key={index} onClick={(event)=>{selectCat(cat, index)}}>
             <img src={cat.thumbnail} height="75" width="75"/>
             <div>{cat.name}</div>
-          <div>{cat.birthdate}</div>
+          <div>{moment(cat.birthdate).format('MMMM Do YYYY')}</div>
         </div>
       })}
  </div>
