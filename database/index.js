@@ -4,7 +4,7 @@ require('dotenv').config();
 const Sequelize = require('sequelize');
 
 
-const sequelize = new Sequelize('levelset', 'root', process.env.MYSQL, {
+const sequelize = new Sequelize('cats', 'root', '', {
   host: 'localhost',
   dialect: 'mysql'
 });

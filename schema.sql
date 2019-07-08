@@ -2,7 +2,7 @@
 
 -- CREATE DATABASE levelset;
 
-USE levelset;
+USE cats;
 
 -- CREATE TABLE Cats (
 --   id int NOT NULL AUTO_INCREMENT,
