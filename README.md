@@ -10,6 +10,7 @@
 
 ## Notes
 
+
 schema.sql has the mock data for testing purposes
 'npm run react-dev' before running server to see the functional front end
 run server/index or npm start to start the server
