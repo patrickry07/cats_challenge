@@ -18,7 +18,7 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "backbone": "^1.4.0",
     "backbone.marionette": "^4.1.2",
     "body-parser": "^1.17.2",
